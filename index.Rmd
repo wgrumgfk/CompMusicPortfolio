@@ -1,0 +1,44 @@
+---
+title: "My portfolio"
+author: "Jan Hundling"
+output: html_document
+date: "2023-02-15"
+---
+
+
+## R Markdown
+
+hier kun je nu met markdown 
+
+zie R markdown documentation
+
+Hoe voeg je R code toe in de markdown:
+klik code menu -> insert chunk
+```{r}
+print('foo')
+```
+
+
+Je communiceert met spotify api door middel van URI links.
+Alles wat je op kan klikken heeft een URI
+Klik rechtermuisknop -> delen/share -> alt 
+  kopieer de URI
+  
+  spotify:playlist:37i9dQZF1DWV67mFOgnpbl
+  
+  delete spotify:playlist:
+  dus delete de eerste 2 termen met 
+```{r}
+library(tidyverse)
+library(spotifyr)
+library(usethis)
+library(remotes)
+```
+  
+  
+```{r}
+my_portfolio <- get_playlist_audio_features("", "37i9dQZF1DXe6bgV3TmZOL")
+
+```
+
+
