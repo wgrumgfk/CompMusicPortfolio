@@ -2,14 +2,20 @@
 Portfolio for Computation Musicology 2023 <br /><br />
 
 This corpus is a playlist titled *"Bouwvak corpus"*. It consists of tracks handpicked by myself over the course of the last year while producing music. <br />
-I produce electronic music in Ableton, as Drix'Doggie. Generally I describe the music I make as industrial trap music. <br />
-In order to produce this type of music, I sample already existing music. Throughout the years I have developed a taste in particular music I sample. <br />
-These particular tracks that I have either already sampled or am planning to sample in future tracks, have been added to the corpus resulting in a 183 tracks corpus. <br /><br />
+I produce electronic music in Ableton, as Drix'Doggie. Generally I describe the music I make as "bouwvak" music, or in terms of conventional genres; industrial trap. <br />
+In order to produce this type of music, I sample already existing music. Throughout the years I have developed a taste in particular music to result in the "bouwvak" sound. <br />
+These particular tracks that I have either already sampled or am planning to sample in future tracks, have been added to the corpus resulting in a 183 track corpus. <br /><br />
 I chose this corpus because I would like to research if there are trends in the music I like to sample, thereby allowing me to learn more about <br />
 my 'taste' or'sound' as a producer. Ideally, through the use of Spotify's music analysis data I would see trends or constrasts that I did not know before <br />
 and aid me describing my sound in terms of music information retrieval.<br />
 <br />
-..... To be continued<br />
+I only added tracks that contain melodic samples. This means that the tracks were all used to obtain a melodic piece of music<br/>
+I have made this selection because I do not want the corpus to be filled with tracks that I used to sample percussive elements<br />
+This is because the audio features of percussive audio are distinctly different from melodic audio. 
+                                                                                                                                  
+The corpus consists of ... subgroups.<br />
+Outliers/abnormalities....<br />
+*..... To be continued*<br />
 <br />
 <br />
 The data visualisation describes 5 displays 5 features returned by the get_playlist_audio_features() function. <br />
