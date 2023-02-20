@@ -4,41 +4,222 @@ author: "Jan Hundling"
 output: html_document
 date: "2023-02-15"
 ---
-
-
 ## R Markdown
 
-hier kun je nu met markdown 
-
-zie R markdown documentation
-
-Hoe voeg je R code toe in de markdown:
-klik code menu -> insert chunk
-```{r}
-print('foo')
-```
-
-
-Je communiceert met spotify api door middel van URI links.
-Alles wat je op kan klikken heeft een URI
-Klik rechtermuisknop -> delen/share -> alt 
-  kopieer de URI
-  
-  spotify:playlist:37i9dQZF1DWV67mFOgnpbl
-  
-  delete spotify:playlist:
-  dus delete de eerste 2 termen met 
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(spotifyr)
-library(usethis)
-library(remotes)
 ```
-  
-  
+
+```{r echo=FALSE}
+hiphopbouwvak_datahiphop_corpus <- get_playlist_audio_features("", "3AuLdhxXjViJlSQAfcJpiM")
+bouwvak_corpus <- get_playlist_audio_features("", "6F942sSKgjLilG6jVlFIcw")
+
+print(bouwvak_corpus)
+
+# All interesting columns
+good_columns_indexes <- c(6,7,8,9,10,11,12,13,14,15,16,19,22,31,33,36,37,39,40,41,43,44,49,50,51,52,53,59,60,61)
+
+## Manually printing some interesting columns 
+print(bouwvak_corpus[, c(36,15,11,14)])
+print(bouwvak_corpus[,1])
+
+bouwvak_data <- bouwvak_corpus[, good_columns_indexes]
+good_columns_titles = colnames(bouwvak_data)
+print(good_columns_titles)
+
+
+print("Trying to generate correlation matrix \n")
+cor_matrix <- cor(bouwvak_data[,c(1:2), use = "pairwise.complete.obs"])
+#round(cor_matrix, 2)
+cor_matrix
+
+
+for (column in colnames(bouwvak_data))
+{
+  #hist <- ggplot(bouwvak_data, aes(bouwvak_data[,column])) + geom_histogram(binwidth = 0.025)
+  #print(hist)
+  #print(column)
+}
+```
+
+```{r eval=FALSE, include=FALSE}
+hist <- ggplot(bouwvak_data, aes(x = danceability)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('danceability'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = energy)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('energy'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = key)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('key'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = loudness)) + 
+  geom_histogram(binwidth = 1) +
+  theme(
+    title = element_text('loudness'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = mode)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('mode'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = speechiness)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('speechiness'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = acousticness)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('acousticness'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = instrumentalness)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('instrumentalness'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = liveness)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('liveness'),
+    axis.title.y = element_blank()
+  )
+hist
+
+hist <- ggplot(bouwvak_data, aes(x = valence)) + 
+  geom_histogram(binwidth = 0.025) +
+  theme(
+    title = element_text('valence'),
+    axis.title.y = element_blank()
+  )
+hist
+
+bar <- ggplot(bouwvak_data, aes(x = time_signature)) + 
+  geom_bar(position='dodge') +
+  theme(
+    title = element_text('time_signature'),
+    axis.title.y = element_blank()
+  )
+bar
+
+bar <- ggplot(bouwvak_data, aes(x = primary_color)) + 
+  geom_bar(position='dodge') +
+  theme(
+    title = element_text('primary_color'),
+    axis.title.y = element_blank()
+  )
+bar
+
+ 
+bar <- ggplot(bouwvak_data, aes(x = key_name)) + 
+  geom_bar(position='dodge') +
+  theme(
+    title = element_text('key_name'),
+    axis.title.y = element_blank()
+  )
+bar
+
+bar <- ggplot(bouwvak_data, aes(x = mode_name)) + 
+  geom_bar(position='dodge') +
+  theme(
+    title = element_text('mode_name'),
+    axis.title.y = element_blank()
+  )
+bar
+
+bar <- ggplot(bouwvak_data, aes(x = key_mode)) + 
+  geom_bar(position='dodge') +
+  theme(
+    title = element_text('key_mode'),
+    axis.title.y = element_blank()
+  )
+bar
+
+```
+
+
+# Markdown
+### Unfortunately I can't get the legend to work.
+### Every color represents a different catagory:
+### From dark to light: *Speechiness, liveness, valence, acousticness, instrumentalness*
+
 ```{r}
-my_portfolio <- get_playlist_audio_features("", "37i9dQZF1DXe6bgV3TmZOL")
-my_portfolio
+mooiplotje <- ggplot(bouwvak_data, aes(x = speechiness, fill='None')) + 
+  geom_histogram(binwidth = 0.025, color="#0c0e09", fill="#0c0e09") +
+  #geom_freqpoly(aes(x=speechiness), binwidth = 0.025, color='#0c0e09' , fill='#0c0e09', alpha=.9) +
+  geom_histogram(aes(x=liveness), binwidth = 0.025, color='#07427a' , fill='#07427a', alpha=.9) +
+  #geom_freqpoly(aes(x=liveness), binwidth = 0.025, color='#07427a' , fill='#07427a', alpha=.9) +
+  geom_histogram(aes(x=valence), binwidth = 0.025, color='#157bab', fill='#157bab', alpha=.9) +
+  geom_histogram(aes(x=acousticness), binwidth = 0.025, color='#45b1ce', fill='#45b1ce', alpha=.8) +
+  geom_histogram(aes(x=instrumentalness), binwidth = 0.025, color='#bce3e8', fill='#bce3e8', alpha=.8) +
+  #scale_fill_manual(name="group",values=c("red","darkgray"),labels=c("a","b")) +
+  labs(
+  y = "Amount of tracks"
+  ) + 
+  theme(
+    legend.justification = "top",
+    axis.title.x = element_blank(),
+    #axis.title.y.left  = element_text('testeens'),
+    #text = element_text('test'),
+    #rect = element_rect("red"),
+    #axis.title.y.left = element_text("LINKS"),
+  )
+mooiplotje
+
+#freqpoly <- ggplot(bouwvak_data, aes(x = speechiness, color='black', fill='black')) + 
+#  geom_freqpoly() +
+#  geom_freqpoly(aes(x=valence), color='darkgrey', fill='darkgrey', alpha=1) +
+#  geom_freqpoly(aes(x=liveness), color='blue', fill='blue', alpha=1) +
+#  geom_freqpoly(aes(x=acousticness), color='green', fill='green', alpha=1) +
+#  geom_freqpoly(aes(x=instrumentalness), color='yellow', fill='yellow', alpha=1) +
+
+#  theme(
+    
+#    title = element_text('test'),
+#    axis.title.y = element_blank()
+#  )
+#freqpoly
+
+#point <- ggplot(bouwvak_data, aes(x = instrumentalness, y = valence, color='red', fill='red')) + 
+#  geom_point() +
+#  theme(
+#    title = element_text('test'),
+#    axis.title.y = element_blank()
+#  )
+#point
+
+
 ```
+
 
 
