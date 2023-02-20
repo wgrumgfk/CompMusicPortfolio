@@ -14,9 +14,11 @@ and aid me describing my sound in terms of music information retrieval.<br />
 <br />
 The data visualisation describes 5 displays 5 features returned by the get_playlist_audio_features() function. <br />
 I selected the 5 specific features: *Speechiness, valence, acousticness, liveness, instrumentalness*.<br />
-As can be seen in the visualisation, all 5 features are either extremely low, or extremely high with very little .....<br />
+*Unfortunately I have not been able to add colour labels or a legend as of yet*<br />
+The visualisation consist of histograms, so the distribution of the 5 features are displayed.<br />
+As can be seen in the visualisation, all 5 features are either extremely low, or extremely high with very little deviation from the mean.<br />
 I plotted the features over eachother in order to visualise the recurring trend in the data.<br />
-I think this is interesting because it showcases that the tracks in the corpus are very uniformly distributed for these particular features<br />
+I think this is interesting because it showcases that the tracks in the corpus are very equally distributed for these particular features.<br />
 One could say by the distribution of the valence feature that my tracks all clearly have a somber tone to them.<br />
 This seems to be the case for all tracks, regardless of the group they belong to.<br />
 
